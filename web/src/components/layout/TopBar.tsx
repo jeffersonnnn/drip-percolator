@@ -22,10 +22,10 @@ export function TopBar() {
       {/* Logo */}
       <div className="flex items-center gap-2 shrink-0">
         <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan to-green flex items-center justify-center">
-          <span className="text-background font-bold text-sm">P</span>
+          <span className="text-background font-bold text-sm">D</span>
         </div>
         <span className="font-mono font-bold text-foreground text-sm tracking-wide">
-          PERCOLATOR
+          DRIP
         </span>
       </div>
 

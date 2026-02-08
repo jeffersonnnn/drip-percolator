@@ -15,9 +15,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Percolator | Perpetual Futures Terminal",
+  title: "Drip | Perpetual Futures Terminal",
   description:
-    "Professional perpetual futures trading terminal for the Percolator protocol on Solana",
+    "Professional perpetual futures trading terminal powered by the Percolator engine on Solana",
 };
 
 export default function RootLayout({

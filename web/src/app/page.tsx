@@ -11,13 +11,20 @@ import { ToastContainer } from "@/components/ui/Toast";
 import { usePrices } from "@/hooks/usePrices";
 import { useSlabData } from "@/hooks/useSlabData";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
+import { useToast } from "@/hooks/useToast";
 
 export default function TradingTerminal() {
   usePrices();
   useSlabData();
   useKeyboardShortcuts();
 
+  const { showToast } = useToast();
   const [showMobileOrder, setShowMobileOrder] = useState(false);
+
+  const handleCopyContractAddress = () => {
+    navigator.clipboard.writeText("coming soon");
+    showToast("Copied to clipboard", "success");
+  };
 
   return (
     <div className="h-screen flex flex-col">
@@ -64,6 +71,16 @@ export default function TradingTerminal() {
           <span className="text-[10px] font-mono text-muted" suppressHydrationWarning>
             Block: {Math.floor(Date.now() / 400).toLocaleString()}
           </span>
+          <span className="text-[10px] font-mono text-muted border-l border-border pl-3">
+            Put Address:{" "}
+            <button
+              onClick={handleCopyContractAddress}
+              className="text-foreground/60 hover:text-cyan transition-colors cursor-pointer"
+              title="Click to copy"
+            >
+              coming soon
+            </button>
+          </span>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-[10px] font-mono text-muted">
@@ -73,7 +90,7 @@ export default function TradingTerminal() {
             Pyth: Connected
           </span>
           <span className="text-[10px] font-mono text-foreground/40">
-            Percolator v0.1.0
+            Drip v0.1.0
           </span>
         </div>
       </div>
