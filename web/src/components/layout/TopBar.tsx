@@ -1,9 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useMarketStore } from "@/stores/useMarketStore";
 import { usePriceStore } from "@/stores/usePriceStore";
 import { MarketStats } from "@/components/market/MarketStats";
+import { cn } from "@/lib/utils";
 
 const WalletMultiButton = dynamic(
   () =>
@@ -16,17 +19,44 @@ const WalletMultiButton = dynamic(
 export function TopBar() {
   const { selectedMarket } = useMarketStore();
   const price = usePriceStore((s) => s.prices[selectedMarket.symbol]);
+  const pathname = usePathname();
 
   return (
     <div className="h-14 bg-surface border-b border-border flex items-center px-4 gap-4">
       {/* Logo */}
-      <div className="flex items-center gap-2 shrink-0">
+      <Link href="/" className="flex items-center gap-2 shrink-0">
         <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan to-green flex items-center justify-center">
           <span className="text-background font-bold text-sm">D</span>
         </div>
         <span className="font-mono font-bold text-foreground text-sm tracking-wide">
           DRIP
         </span>
+      </Link>
+
+      {/* Nav links */}
+      <div className="flex items-center gap-1 border-l border-border pl-4 shrink-0">
+        <Link
+          href="/trade"
+          className={cn(
+            "px-3 py-1.5 text-xs font-mono rounded transition-colors",
+            pathname === "/trade"
+              ? "text-cyan bg-cyan/10"
+              : "text-muted hover:text-foreground"
+          )}
+        >
+          Trade
+        </Link>
+        <Link
+          href="/portfolio"
+          className={cn(
+            "px-3 py-1.5 text-xs font-mono rounded transition-colors",
+            pathname === "/portfolio"
+              ? "text-cyan bg-cyan/10"
+              : "text-muted hover:text-foreground"
+          )}
+        >
+          Portfolio
+        </Link>
       </div>
 
       {/* Selected market */}
